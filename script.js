@@ -124,8 +124,3 @@ function checkAnswer(answer){
 
 }
 
-if(runningQuestionIndex > lastQuestionIndex){
-    quiz.style.display = "none"
-    highscores.style.display = "block"
-    score.innerHTML = "Your final score" + " " + counter
-}
