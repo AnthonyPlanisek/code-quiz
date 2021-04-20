@@ -7,6 +7,8 @@ var choiceB = document.getElementById("B")
 var choiceC = document.getElementById("C")
 var choiceD = document.getElementById("D")
 var highscores = document.getElementById("highscores")
+var score = document.getElementById("score")
+var initials = document.getElementById("initials")
 
 //questions to be displayed
 
@@ -52,7 +54,7 @@ var questions = [
     correct: "D"
     }
 ]
-console.log(questions[0])
+
 
 //start quiz
 
@@ -94,12 +96,18 @@ var lastQuestionIndex = questions.length - 1
 var runningQuestionIndex = 0
 
 function showQuestions() {
+    if(runningQuestionIndex > lastQuestionIndex){
+        quiz.style.display = "none"
+        highscores.style.display = "block"
+        score.innerHTML = "Your final score" + " " + counter
+    }else{
     var q = questions[runningQuestionIndex]
     question.innerHTML = "<p>" +q.question+ "</p>"
     choiceA.innerHTML = q.choiceA
     choiceB.innerHTML = q.choiceB
     choiceC.innerHTML = q.choiceC
     choiceD.innerHTML = q.choiceD
+    }
 }
 
 //checks what the user selected 
@@ -113,14 +121,11 @@ function checkAnswer(answer){
      runningQuestionIndex++
      showQuestions()
     }
+
 }
+
 if(runningQuestionIndex > lastQuestionIndex){
     quiz.style.display = "none"
     highscores.style.display = "block"
-}else{
-    //show score
+    score.innerHTML = "Your final score" + " " + counter
 }
-
-
-
-console.log(lastQuestionIndex)
