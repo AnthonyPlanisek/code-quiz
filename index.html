@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <button type="button" id="start">Click Me!</button>
-    
+<!--highscore button-->
+    <button type="button" id="showHS">Highscores</button><br>
+<!--start game button-->
+    <button type="button" id="start">Start game</button>
+<!--placeholders for the questions-->
     <div id="quiz" style = "display: none;">
         <div id="question"> <p>Question</p> </div>
             
@@ -21,6 +25,7 @@
             </div>
             <div id="timer"></div>
     </div>
+<!--shows highscore and asks player for initials-->
     <div id="highscores" style = "display: none;">
         <div id="score"></div>
         <form>
@@ -28,6 +33,11 @@
             <input type = "text" id = "initials" name = "input">
         </form>
         <button type="button" id="submit">Submit</button>
+    </div>
+<!--seperate highscore page-->
+    <div id="HSpage" style = "display: none;">
+        <div id="topScore"></div>
+        <div id="name"></div>
     </div>
     <script src="script.js"></script>
 </body>

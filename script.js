@@ -9,6 +9,10 @@ var choiceD = document.getElementById("D")
 var highscores = document.getElementById("highscores")
 var score = document.getElementById("score")
 var initials = document.getElementById("initials")
+var HSbutton = document.getElementById("showHS")
+var topScore = document.getElementById("topScore")
+var name = document.getElementById("name")
+var submit = document.getElementById("submit")
 
 //questions to be displayed
 
@@ -59,8 +63,16 @@ var questions = [
 //start quiz
 
 start.addEventListener("click", startQuiz)
+showHS.addEventListener("click", displayHS)
+
+function displayHS(){
+    start.style.display = "none"
+    document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore")
+    document.getElementById("name").innerHTML = localStorage.getItem("playerInitials")
+}
 
 function startQuiz(){
+    HSbutton.style.display = "none"
     start.style.display = "none"
     //start timer
     showQuestions()
@@ -100,6 +112,12 @@ function showQuestions() {
         quiz.style.display = "none"
         highscores.style.display = "block"
         score.innerHTML = "Your final score" + " " + counter
+        submit.addEventListener("click", save)
+        function save(){
+        localStorage.setItem("playerScore", counter)
+        localStorage.setItem("playerInitials", initials)
+        location.reload()
+        }
     }else{
     var q = questions[runningQuestionIndex]
     question.innerHTML = "<p>" +q.question+ "</p>"
