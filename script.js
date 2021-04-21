@@ -96,7 +96,7 @@ function countdown() {
       counter--;
       if (counter >= 0) {
         span = document.getElementById('timer');
-        span.innerHTML = counter;
+        span.innerHTML = "Time:" +" "+ counter;
      }
      if (counter === 0) {
         alert('sorry, out of time');
