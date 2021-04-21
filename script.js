@@ -8,11 +8,12 @@ var choiceC = document.getElementById("C")
 var choiceD = document.getElementById("D")
 var highscores = document.getElementById("highscores")
 var score = document.getElementById("score")
-var initials = document.getElementById("initials")
+//var initials = document.getElementById("initials")
 var HSbutton = document.getElementById("showHS")
 var topScore = document.getElementById("topScore")
-var name = document.getElementById("name")
+var nameI = document.getElementById("nameI")
 var submit = document.getElementById("submit")
+var HSpage = document.getElementById("HSpage")
 
 //questions to be displayed
 
@@ -66,13 +67,16 @@ start.addEventListener("click", startQuiz)
 showHS.addEventListener("click", displayHS)
 
 function displayHS(){
-    start.style.display = "none"
+    //start.style.display = "none"
+    HSpage.style.display = "block"
     document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore")
-    document.getElementById("name").innerHTML = localStorage.getItem("playerInitials")
+    document.getElementById("nameI").innerHTML = localStorage.getItem("playerInitials")
 }
 
 function startQuiz(){
     HSbutton.style.display = "none"
+    topScore.style.display = "none"
+    nameI.style.display = "none"
     start.style.display = "none"
     //start timer
     showQuestions()
@@ -85,9 +89,10 @@ function startQuiz(){
 //timer
 
 var counter = 75
+var interval 
 function countdown() {
     
-    setInterval(function() {
+    interval = setInterval(function() {
       counter--;
       if (counter >= 0) {
         span = document.getElementById('timer');
@@ -97,6 +102,7 @@ function countdown() {
         alert('sorry, out of time');
         clearInterval(counter);
       }
+      
     }, 1000);
   };
   
@@ -111,9 +117,11 @@ function showQuestions() {
     if(runningQuestionIndex > lastQuestionIndex){
         quiz.style.display = "none"
         highscores.style.display = "block"
+        clearInterval(interval)
         score.innerHTML = "Your final score" + " " + counter
         submit.addEventListener("click", save)
         function save(){
+        var initials = document.getElementById("initials").value
         localStorage.setItem("playerScore", counter)
         localStorage.setItem("playerInitials", initials)
         location.reload()
