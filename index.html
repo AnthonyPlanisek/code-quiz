@@ -13,11 +13,19 @@
 <body>
 
 <!--highscore button-->
-    <button type="button" id="showHS">Highscores</button><br>
-    <br>
+    <header>
+        <button type="button" id="showHS">Highscores</button> <span id="timer">Time: 75</span>
+    </header>
 <!--start game button-->
-    <button type="button" id="start">Start game</button>
-
+    <div id='starting'>
+        <p id="text">Coding Quiz Challenge<br>
+            Try to answer the following questions within the time Limit.<br>
+             Keep in mind the incorrect answers will penalize your score-time By ten-seconds!
+        </p>
+        <div id="startGame">
+            <button type="button" id="start">Start game</button>
+        </div>
+    </div>
 <!--placeholders for the questions-->
     <div id="quiz" style = "display: none;">
         <div id="question"> <p>Question</p> </div>
@@ -28,12 +36,14 @@
                 <button type="button" class="choice" id="C" onclick="checkAnswer('C')"></button>
                 <button type="button" class="choice" id="D" onclick="checkAnswer('D')"></button>
             </div>
-            <div id="timer"></div>
+            
     </div>
 
 <!--shows highscore and asks player for initials-->
     <div id="highscores" style = "display: none;">
-        <div id="score"></div>
+        <div id="score">
+            
+        </div>
         <form>
             <label for="input">Enter Initials:</label>
             <input type = "text" id = "initials" name = "input">

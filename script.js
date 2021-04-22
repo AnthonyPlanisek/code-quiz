@@ -14,6 +14,7 @@ var topScore = document.getElementById("topScore")
 var nameI = document.getElementById("nameI")
 var submit = document.getElementById("submit")
 var HSpage = document.getElementById("HSpage")
+var text = document.getElementById("text")
 
 //questions to be displayed
 
@@ -68,16 +69,25 @@ showHS.addEventListener("click", displayHS)
 
 function displayHS(){
     //start.style.display = "none"
+    //text.style.display = "none"
     HSpage.style.display = "block"
-    document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore")
-    document.getElementById("nameI").innerHTML = localStorage.getItem("playerInitials")
+    //document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore")
+    
+    for (let i = 0; i < scoreArray.length; i++) {
+        document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore", [i])
+        console.log("hello")
+    }
+    
+
+
+    document.getElementById("nameI").innerHTML = JSON.parse(localStorage.getItem("playerInitials"))
 }
 
 function startQuiz(){
     HSbutton.style.display = "none"
     topScore.style.display = "none"
     nameI.style.display = "none"
-    start.style.display = "none"
+    starting.style.display = "none"
     //start timer
     showQuestions()
     quiz.style.display = "block"
@@ -112,18 +122,26 @@ function countdown() {
 
 var lastQuestionIndex = questions.length - 1
 var runningQuestionIndex = 0
+var scoreArray = []
+var initialsArray = []
 
 function showQuestions() {
     if(runningQuestionIndex > lastQuestionIndex){
         quiz.style.display = "none"
+        timer.style.display = "none"
         highscores.style.display = "block"
         clearInterval(interval)
         score.innerHTML = "Your final score" + " " + counter
         submit.addEventListener("click", save)
         function save(){
+        
+        
+        scoreArray.push(counter)
+        localStorage.setItem("playerScores", JSON.stringify(scoreArray))
+
         var initials = document.getElementById("initials").value
-        localStorage.setItem("playerScore", counter)
-        localStorage.setItem("playerInitials", initials)
+        initialsArray.push(initials)
+        localStorage.setItem("playerInitials", JSON.stringify(initialsArray))
         location.reload()
         }
     }else{
