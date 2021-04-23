@@ -9,7 +9,7 @@ var choiceD = document.getElementById("D")
 var highscores = document.getElementById("highscores")
 var score = document.getElementById("score")
 //var initials = document.getElementById("initials")
-var HSbutton = document.getElementById("showHS")
+var showHS = document.getElementById("showHS")
 var topScore = document.getElementById("topScore")
 var nameI = document.getElementById("nameI")
 var submit = document.getElementById("submit")
@@ -72,9 +72,16 @@ function displayHS(){
     //text.style.display = "none"
     HSpage.style.display = "block"
     //document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore")
-    
-    for (let i = 0; i < scoreArray.length; i++) {
-        document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore", [i])
+
+
+
+
+    console.log("World")
+    var storage = localStorage.getItem("playerScore")
+    for (var i = 0; i < storage.length; i++) {
+       
+        console.log("storage", typeof storage )
+        document.getElementById("topScore").innerHTML = storage[i]
         console.log("hello")
     }
     
@@ -83,8 +90,12 @@ function displayHS(){
     document.getElementById("nameI").innerHTML = JSON.parse(localStorage.getItem("playerInitials"))
 }
 
+
+
+
+
 function startQuiz(){
-    HSbutton.style.display = "none"
+    showHS.style.display = "none"
     topScore.style.display = "none"
     nameI.style.display = "none"
     starting.style.display = "none"
@@ -122,9 +133,9 @@ function countdown() {
 
 var lastQuestionIndex = questions.length - 1
 var runningQuestionIndex = 0
-var scoreArray = []
+//var scoreArray = ""
 var initialsArray = []
-
+//var playerS = []
 function showQuestions() {
     if(runningQuestionIndex > lastQuestionIndex){
         quiz.style.display = "none"
@@ -132,17 +143,43 @@ function showQuestions() {
         highscores.style.display = "block"
         clearInterval(interval)
         score.innerHTML = "Your final score" + " " + counter
+        //var playerSC = []
+        
+
+
         submit.addEventListener("click", save)
         function save(){
         
-        
-        scoreArray.push(counter)
-        localStorage.setItem("playerScores", JSON.stringify(scoreArray))
 
+
+
+
+        //saves user score as time to an array
+        
+        var playerS =  JSON.parse(localStorage.getItem("playerScores")) || []
+        console.log("player", playerS)
+        
+        console.log("time", counter)
+        //if (playerS == null) {
+            //localStorage.setItem("playerScores", JSON.stringify(counter))
+        //}else {
+            playerS.push(counter)
+            console.log("player", playerS)
+            localStorage.setItem("playerScores", JSON.stringify(playerS))
+       // }
+        
+        
+
+
+
+
+
+        //saves user inputed initials in an array
         var initials = document.getElementById("initials").value
         initialsArray.push(initials)
         localStorage.setItem("playerInitials", JSON.stringify(initialsArray))
         location.reload()
+
         }
     }else{
     var q = questions[runningQuestionIndex]
