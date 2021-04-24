@@ -78,6 +78,7 @@ function displayHS(){
     
     var saved = JSON.parse(localStorage.getItem("playerScores"))
     var storage = JSON.parse(localStorage.getItem("playerScores")).length
+    var nameS = JSON.parse(localStorage.getItem("playerInitials"))
     var ol = document.createElement("ol")
     topScore.appendChild(ol)
     saved.sort()
@@ -86,7 +87,7 @@ function displayHS(){
     for (let i = 0; i < storage; i++) {
         var li = document.createElement("li")
         ol.appendChild(li)
-        li.innerHTML = li.innerHTML + saved[i]
+        li.innerHTML = li.innerHTML + nameS[i] + " " + saved[i]
         showHS.style.display = "none"
     }
 
@@ -180,10 +181,10 @@ function showQuestions() {
         
         var initialS = JSON.parse(localStorage.getItem("playerInitials")) || []
         
-        initialsArray.push(initials)
+        initialS.push(initials)
 
-        localStorage.setItem("playerInitials", JSON.stringify(initialsArray))
-        
+        localStorage.setItem("playerInitials", JSON.stringify(initialS))
+
         location.reload()
             
         }
