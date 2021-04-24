@@ -62,19 +62,16 @@ var questions = [
 ]
 
 
-//start quiz
+//click events for high score and start quiz
 
 start.addEventListener("click", startQuiz)
 showHS.addEventListener("click", displayHS)
 
+//displays highscore
+
 function displayHS(){
-    //start.style.display = "none"
-    //text.style.display = "none"
-    HSpage.style.display = "block"
-
-
-    //document.getElementById("topScore").innerHTML = JSON.stringify(localStorage.getItem("playerScores"))
     
+    HSpage.style.display = "block"
     
     var saved = JSON.parse(localStorage.getItem("playerScores"))
     var storage = JSON.parse(localStorage.getItem("playerScores")).length
@@ -87,18 +84,18 @@ function displayHS(){
     for (let i = 0; i < storage; i++) {
         var li = document.createElement("li")
         ol.appendChild(li)
-        li.innerHTML = li.innerHTML + nameS[i] + " " + saved[i]
+        li.innerHTML = li.innerHTML + nameS[i] +":" + " " + saved[i]
         showHS.style.display = "none"
     }
 
 
 
-    document.getElementById("nameI").innerHTML = JSON.parse(localStorage.getItem("playerInitials"))
+
 }
 
 
 
-
+//start quiz function / hides other elements from the page
 
 function startQuiz(){
     showHS.style.display = "none"
@@ -135,24 +132,22 @@ function countdown() {
   
   
 
-//runs the questions
+//saves which question I am on and when the last question is
 
 var lastQuestionIndex = questions.length - 1
 var runningQuestionIndex = 0
-//var scoreArray = ""
-var initialsArray = []
-//var playerS = []
+
 function showQuestions() {
+    //runs if this is the last question
     if(runningQuestionIndex > lastQuestionIndex){
+
         quiz.style.display = "none"
         timer.style.display = "none"
         highscores.style.display = "block"
         clearInterval(interval)
         score.innerHTML = "Your final score" + " " + counter
-        //var playerSC = []
         
-
-
+        //saves data on click
         submit.addEventListener("click", save)
         function save(){
         
@@ -188,6 +183,7 @@ function showQuestions() {
         location.reload()
             
         }
+        //displays questions
     }else{
     var q = questions[runningQuestionIndex]
     question.innerHTML = "<p>" +q.question+ "</p>"

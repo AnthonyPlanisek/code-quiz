@@ -32,3 +32,8 @@ button {
     flex-direction: row;
     justify-content: center;
 }
+
+#HSpage {
+    color: palegreen;
+    font-weight: bold;
+}
