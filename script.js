@@ -71,8 +71,26 @@ function displayHS(){
     //start.style.display = "none"
     //text.style.display = "none"
     HSpage.style.display = "block"
-    document.getElementById("topScore").innerHTML = JSON.stringify(localStorage.getItem("playerScores"))
+
+
+    //document.getElementById("topScore").innerHTML = JSON.stringify(localStorage.getItem("playerScores"))
     
+    
+    var saved = JSON.parse(localStorage.getItem("playerScores"))
+    var storage = JSON.parse(localStorage.getItem("playerScores")).length
+    var ol = document.createElement("ol")
+    topScore.appendChild(ol)
+    saved.sort()
+    console.log('s', saved)
+
+    for (let i = 0; i < storage; i++) {
+        var li = document.createElement("li")
+        ol.appendChild(li)
+        li.innerHTML = li.innerHTML + saved[i]
+    }
+
+
+
     /*
     JSON.stringify(localStorage.getItem("playerScore"))
     var storage = document.getElementById("topScore").innerHTML 
@@ -161,12 +179,10 @@ function showQuestions() {
         //saves user score as time to an array
         
         var playerS =  JSON.parse(localStorage.getItem("playerScores")) || []
-        console.log("player", playerS)
         
-        console.log("time", counter)
         
             playerS.push(counter)
-            console.log("player", playerS)
+            
             localStorage.setItem("playerScores", JSON.stringify(playerS))
        
         
