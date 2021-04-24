@@ -71,12 +71,16 @@ function displayHS(){
     //start.style.display = "none"
     //text.style.display = "none"
     HSpage.style.display = "block"
-    //document.getElementById("topScore").innerHTML = localStorage.getItem("playerScore")
+    document.getElementById("topScore").innerHTML = JSON.stringify(localStorage.getItem("playerScores"))
+    
+    /*
+    JSON.stringify(localStorage.getItem("playerScore"))
+    var storage = document.getElementById("topScore").innerHTML 
+    storage = JSON.parse(localStorage.getItem("playerScore"))
+    */
 
 
-
-
-    console.log("World")
+    /*console.log("World")
     var storage = localStorage.getItem("playerScore")
     for (var i = 0; i < storage.length; i++) {
        
@@ -84,7 +88,7 @@ function displayHS(){
         document.getElementById("topScore").innerHTML = storage[i]
         console.log("hello")
     }
-    
+    */
 
 
     document.getElementById("nameI").innerHTML = JSON.parse(localStorage.getItem("playerInitials"))
@@ -160,13 +164,11 @@ function showQuestions() {
         console.log("player", playerS)
         
         console.log("time", counter)
-        //if (playerS == null) {
-            //localStorage.setItem("playerScores", JSON.stringify(counter))
-        //}else {
+        
             playerS.push(counter)
             console.log("player", playerS)
             localStorage.setItem("playerScores", JSON.stringify(playerS))
-       // }
+       
         
         
 
