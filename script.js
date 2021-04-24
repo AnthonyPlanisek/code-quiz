@@ -87,26 +87,9 @@ function displayHS(){
         var li = document.createElement("li")
         ol.appendChild(li)
         li.innerHTML = li.innerHTML + saved[i]
+        showHS.style.display = "none"
     }
 
-
-
-    /*
-    JSON.stringify(localStorage.getItem("playerScore"))
-    var storage = document.getElementById("topScore").innerHTML 
-    storage = JSON.parse(localStorage.getItem("playerScore"))
-    */
-
-
-    /*console.log("World")
-    var storage = localStorage.getItem("playerScore")
-    for (var i = 0; i < storage.length; i++) {
-       
-        console.log("storage", typeof storage )
-        document.getElementById("topScore").innerHTML = storage[i]
-        console.log("hello")
-    }
-    */
 
 
     document.getElementById("nameI").innerHTML = JSON.parse(localStorage.getItem("playerInitials"))
@@ -194,10 +177,15 @@ function showQuestions() {
 
         //saves user inputed initials in an array
         var initials = document.getElementById("initials").value
+        
+        var initialS = JSON.parse(localStorage.getItem("playerInitials")) || []
+        
         initialsArray.push(initials)
-        localStorage.setItem("playerInitials", JSON.stringify(initialsArray))
-        location.reload()
 
+        localStorage.setItem("playerInitials", JSON.stringify(initialsArray))
+        
+        location.reload()
+            
         }
     }else{
     var q = questions[runningQuestionIndex]
