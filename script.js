@@ -102,6 +102,7 @@ function startQuiz(){
     topScore.style.display = "none"
     nameI.style.display = "none"
     starting.style.display = "none"
+    HSpage.style.display = "none"
     //start timer
     showQuestions()
     quiz.style.display = "block"
