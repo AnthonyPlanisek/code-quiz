@@ -78,7 +78,7 @@ function displayHS(){
     var nameS = JSON.parse(localStorage.getItem("playerInitials"))
     var ol = document.createElement("ol")
     topScore.appendChild(ol)
-    saved.sort()
+    saved.sort((a, b) => b - a)
     console.log('s', saved)
 
     for (let i = 0; i < storage; i++) {
